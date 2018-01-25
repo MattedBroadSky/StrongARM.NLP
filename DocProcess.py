@@ -18,7 +18,7 @@ class DocProcessor:
     splitKey = splitKey1 + splitKey2 + nopKey + changeRowKey
 
     def Load(self, path="", document=""):
-        """载入文档"""
+        """载入文档1"""
 
         if path == "":
             if document == "":

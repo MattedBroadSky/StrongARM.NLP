@@ -1,3 +1,5 @@
+#! /usr/bin/python
+# -*- coding: UTF-8 -*-
 
 import re
 import sys
@@ -5,7 +7,7 @@ import sys
 import UnicodeRegex as ur
 
 
-f = open(r"D:\sample5.txt")
+f = open(u"D:\\Samples\\001.盘龙.txt")
 s = f.read().decode('gbk')
 f.close()
 
@@ -20,6 +22,7 @@ for i in s:
         else:
             result[i] = 1
             print i.encode('raw_unicode_escape'),
+
 print "\nResult:"
 
 

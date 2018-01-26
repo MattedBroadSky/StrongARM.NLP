@@ -2,26 +2,17 @@
 import re
 import sys
 
-from UnicodeRegex import unicode_dict as ud
-
-def IsExist(str):
-    flag = False
-    for k,v in ud.items():
-        temp = v.match(str)
-        if(temp is not None):
-            flag = True
-            break
-    return flag
+import UnicodeRegex as ur
 
 
-f = open(r"D:\sample.txt")
+f = open(r"D:\sample5.txt")
 s = f.read().decode('gbk')
 f.close()
 
 result = {}
 
 for i in s:
-    if(IsExist(i)):
+    if(ur.Exist(i)):
         continue
     else:
         if(result.has_key(i)):

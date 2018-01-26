@@ -1,25 +1,36 @@
 
 import re
+import sys
 
-re_han_detail = re.compile(ur"[\u4E00-\u9FD5]")
-re_skip_detail = re.compile("([\.0-9]+|[a-zA-Z0-9]+)")
-re_han_internal = re.compile("([\u4E00-\u9FD5a-zA-Z0-9+#&\._]+)")
-re_skip_internal = re.compile("(\r\n|\s)")
+from UnicodeRegex import unicode_dict as ud
 
-re_eng = re.compile("[a-zA-Z0-9]+")
-re_num = re.compile("[\.0-9]+")
-
-re_eng1 = re.compile('^[a-zA-Z0-9]$', re.U)
-
-a = '一二三四'.decode("utf-8")
-
-han = re.compile(ur"[\u4E00-\u5E00]")
-
-print han.match(a)
-
-print re_han_detail.match(a)
+def IsExist(str):
+    flag = False
+    for k,v in ud.items():
+        temp = v.match(str)
+        if(temp is not None):
+            flag = True
+            break
+    return flag
 
 
-tst = re.compile("[0-9]")
+f = open(r"D:\sample.txt")
+s = f.read().decode('gbk')
+f.close()
 
-print tst.match('1')
+result = {}
+
+for i in s:
+    if(IsExist(i)):
+        continue
+    else:
+        if(result.has_key(i)):
+            result[i] = result[i] + 1
+        else:
+            result[i] = 1
+            print i.encode('raw_unicode_escape'),
+print "\nResult:"
+
+
+for k,v in result.items():
+    print k, '\t', k.encode('raw_unicode_escape'), '\t', v
